@@ -1,0 +1,36 @@
+﻿<Application x:Class="Wpf.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewModels="clr-namespace:Wpf.ViewModels"
+             xmlns:vmSuppliers="clr-namespace:Wpf.ViewModels.SuppliersEditor"
+             xmlns:viewsSuppliers="clr-namespace:Wpf.Views.SuppliersEditor"
+             xmlns:vmMedicines="clr-namespace:Wpf.ViewModels.MedicinesEditor"
+             xmlns:viewsMedicines="clr-namespace:Wpf.Views.MedicinesEditor"
+             xmlns:views="clr-namespace:Wpf.Views"
+             >
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
+            <views:uscMain/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vmSuppliers:AddSupplierViewModel}">
+            <viewsSuppliers:uscAddSupplier/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmSuppliers:EditSupplierViewModel}">
+            <viewsSuppliers:uscEditSupplier/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmSuppliers:SuppliersEditorViewModel}">
+            <viewsSuppliers:uscSuppliersEditor/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vmMedicines:AddMedicineViewModel}">
+            <viewsMedicines:uscAddMedicine/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmMedicines:EditMedicineViewModel}">
+            <viewsMedicines:uscEditMedicine/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vmMedicines:MedicinesEditorViewModel}">
+            <viewsMedicines:uscMedicinesEditor/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
