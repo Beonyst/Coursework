@@ -1,13 +1,18 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!-- Этот файл определяет стили для бордеров с различными эффектами и внешним видом. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
+        <!-- Подключение общих ресурсов из другого файла. -->
         <ResourceDictionary Source="Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- Стиль для бордера с теневым эффектом. -->
     <Style x:Key="shadowBorder" TargetType="Border">
+        <!-- Установка фона и толщины границы. -->
         <Setter Property="Background" Value="{StaticResource GrayBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="BorderBrush" Value="{StaticResource GrayBrush}"/>
+        <!-- Добавление размытия для теневого эффекта. -->
         <Setter Property="Effect">
             <Setter.Value>
                 <BlurEffect Radius="10"/>
@@ -15,9 +20,12 @@
         </Setter>
     </Style>
 
+    <!-- Стиль для бордера, который используется для разделения элементов. -->
     <Style x:Key="splitBorder" TargetType="Border">
+        <!-- Установка отступов и высоты. -->
         <Setter Property="Margin" Value="4"/>
         <Setter Property="Height" Value="1.5"/>
+        <!-- Установка фона с оранжевым цветом. -->
         <Setter Property="Background" Value="{StaticResource OrangeBrush}"/>
     </Style>
 </ResourceDictionary>

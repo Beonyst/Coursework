@@ -20,6 +20,7 @@ namespace Wpf.Views.MedicinesEditor
     /// </summary>
     public partial class uscMedicinesEditor : UserControl
     {
+        // Конструктор, инициализирующий компоненты
         public uscMedicinesEditor()
         {
             InitializeComponent();

@@ -1,10 +1,10 @@
 using System.Windows;
 
 [assembly: ThemeInfo(
-    ResourceDictionaryLocation.None,            //where theme specific resource dictionaries are located
-                                                //(used if a resource is not found in the page,
-                                                // or application resource dictionaries)
-    ResourceDictionaryLocation.SourceAssembly   //where the generic resource dictionary is located
-                                                //(used if a resource is not found in the page,
-                                                // app, or any theme specific resource dictionaries)
+    ResourceDictionaryLocation.None,            // Указывает, что темы со специфичными ресурсами не используются.
+                                                // (используется, если ресурс не найден на уровне страницы
+                                                // или в словарях ресурсов приложения).
+    ResourceDictionaryLocation.SourceAssembly   // Указывает, что общий словарь ресурсов находится в сборке.
+                                                // (используется, если ресурс не найден на уровне страницы,
+                                                // приложения или в темах со специфичными ресурсами).
 )]

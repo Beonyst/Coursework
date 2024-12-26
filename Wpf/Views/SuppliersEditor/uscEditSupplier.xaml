@@ -8,22 +8,36 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Слияние общих стилей для управления интерфейсом -->
                 <ResourceDictionary Source="../../Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
     <Grid>
+        <!-- Определение колонок -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <!-- Определение строк -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}"><Run Text="Редактировать поставщика"/></TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Наименование:"/></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EditedSupplierItemViewModel.Name}" Style="{StaticResource MediumTextBoxStyle}"></TextBox>
+        <!-- Заголовок для редактирования поставщика -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}">
+            <Run Text="Редактировать поставщика"/>
+        </TextBlock>
+
+        <!-- Лейбл для поля "Наименование" -->
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Наименование:"/>
+        </TextBlock>
+
+        <!-- Поле ввода для редактирования наименования поставщика -->
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EditedSupplierItemViewModel.Name}" Style="{StaticResource MediumTextBoxStyle}"/>
     </Grid>
 </UserControl>

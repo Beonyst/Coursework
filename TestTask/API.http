@@ -1,6 +1,7 @@
 @API_HostAddress = http://localhost:5282
 
-GET {{API_HostAddress}}/weatherforecast/
-Accept: application/json
+// HTTP GET запрос для получения прогноза погоды.
+GET {{API_HostAddress}}/weatherforecast/ 
+Accept: application/json  // Указывает, что ответ должен быть в формате JSON.
 
 ###

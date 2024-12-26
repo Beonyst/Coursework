@@ -8,22 +8,36 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Слияние общих стилей для управления интерфейсом -->
                 <ResourceDictionary Source="../../Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
     <Grid>
+        <!-- Определение колонок -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <!-- Определение строк -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}"><Run Text="Поставщики"/></TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Наименование:"/></TextBlock>
+        <!-- Заголовок для страницы добавления поставщика -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}">
+            <Run Text="Поставщики"/>
+        </TextBlock>
+
+        <!-- Лейбл для поля "Наименование" -->
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Наименование:"/>
+        </TextBlock>
+
+        <!-- Поле ввода для наименования нового поставщика -->
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewSupplierItemViewModel.Name}" Style="{StaticResource MediumTextBoxStyle}"/>
     </Grid>
 </UserControl>

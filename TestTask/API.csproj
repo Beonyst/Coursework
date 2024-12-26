@@ -1,23 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <TargetFramework>net8.0</TargetFramework>  <!-- Указывает целевую платформу .NET 8.0 для проекта. -->
+    <Nullable>enable</Nullable>  <!-- Включение поддержки nullable-типов для обеспечения безопасности типов. -->
+    <ImplicitUsings>enable</ImplicitUsings>  <!-- Включение неявных using-директив для стандартных библиотек. -->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    <!-- Ссылки на внешние пакеты, необходимые для работы приложения. -->
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0" />  <!-- Пакет для интеграции Autofac с ASP.NET Core. -->
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />  <!-- Клиент для работы с базой данных SQL Server. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />  <!-- Пакет для работы с базой данных SQLite. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">  <!-- Пакет инструментов для работы с Entity Framework Core. -->
+      <PrivateAssets>all</PrivateAssets>  <!-- Исключает зависимости от этого пакета из публикации. -->
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>  <!-- Указывает, какие артефакты пакета должны быть использованы. -->
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Tanneryd.BulkOperations.EFCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />  <!-- Пакет для работы с DI (внедрение зависимостей) в ASP.NET Core. -->
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />  <!-- Пакет для работы с JSON (сериализация и десериализация). -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />  <!-- Пакет для интеграции Swagger с ASP.NET Core. -->
+    <PackageReference Include="Tanneryd.BulkOperations.EFCore" Version="2.1.1" />  <!-- Пакет для оптимизации массовых операций в Entity Framework Core. -->
   </ItemGroup>
 
 </Project>

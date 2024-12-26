@@ -6,15 +6,19 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <!-- Ресурсы для стилей и внешних компонентов -->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Подключение внешних стилей -->
                 <ResourceDictionary Source="../../Styles/Common.xaml"/>
                 <ResourceDictionary Source="../../Styles/ExtendedNumericUpDown.xaml"/>
                 <ResourceDictionary Source="../../Styles/ComboBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
+    <!-- Основная сетка для размещения элементов -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,23 +33,41 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}"><Run Text="Медикаменты"/></TextBlock>
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BigTextBlockStyle}">
+            <Run Text="Медикаменты"/>
+        </TextBlock>
 
-        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Название:"/></TextBlock>
+        <!-- Название лекарства -->
+        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Название:"/>
+        </TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewMedicineItemViewModel.Name}" Style="{StaticResource MediumTextBoxStyle}"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Описание:"/></TextBlock>
+        <!-- Описание лекарства -->
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Описание:"/>
+        </TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewMedicineItemViewModel.Description}" Style="{StaticResource MediumTextBoxStyle}"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Рубли:"/></TextBlock>
+        <!-- Цена в рублях -->
+        <TextBlock Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Рубли:"/>
+        </TextBlock>
         <xctk:DoubleUpDown Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" FontSize="14" Style="{StaticResource CustomDoubleUpDownStyle}" CultureInfo="ru-RU"
                    Value="{Binding NewMedicineItemViewModel.Rubles}" Minimum="0" Padding="2"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Копейки:"/></TextBlock>
+        <!-- Цена в копейках -->
+        <TextBlock Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Копейки:"/>
+        </TextBlock>
         <xctk:DoubleUpDown Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" FontSize="14" Style="{StaticResource CustomDoubleUpDownStyle}" CultureInfo="ru-RU"
                    Value="{Binding NewMedicineItemViewModel.Kopecks}" Minimum="0" Maximum="99" Padding="2"/>
 
-        <TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}"><Run Text="Поставщик:"/></TextBlock>
+        <!-- Поставщик лекарства -->
+        <TextBlock Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Style="{StaticResource MediumTextBlockStyle}">
+            <Run Text="Поставщик:"/>
+        </TextBlock>
         <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding SupplierItems}" Style="{DynamicResource CustomComboBox}" Background="White" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSupplier}"/>
     </Grid>
 </UserControl>

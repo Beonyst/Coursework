@@ -1,5 +1,8 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!-- Этот файл определяет ресурсы, стили и цвета для UI элементов в приложении. Основное использование – создание унифицированного внешнего вида для различных элементов интерфейса. -->
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Определение цветов для дальнейшего использования в приложении -->
     <Color x:Key="Gray">#FF9E9E9E</Color>
     <Color x:Key="LightGray">#FFF3F3f3</Color>
     <Color x:Key="Orange">#FFF38E30</Color>
@@ -9,7 +12,7 @@
     <Color x:Key="Black">#FF242425</Color>
     <Color x:Key="Red">#FFE74C3C</Color>
     
-
+    <!-- Определение кистей для использования этих цветов в различных элементах интерфейса -->
     <SolidColorBrush x:Key="GrayBrush" Color="{StaticResource Gray}"/>
     <SolidColorBrush x:Key="LightGrayBrush" Color="{StaticResource LightGray}"/>
     <SolidColorBrush x:Key="OrangeBrush" Color="{StaticResource Orange}"/>
@@ -19,10 +22,12 @@
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="RedBrush" Color="{StaticResource Red}"/>
 
+    <!-- Определение шрифтов, используемых в приложении -->
     <FontFamily x:Key="FontMain">Segoe UI Light</FontFamily>
     <FontFamily x:Key="Font">PT Sans</FontFamily>
     <FontFamily x:Key="FontSemilight">Segoe UI Semilight</FontFamily>
 
+    <!-- Стиль для большого текста в элементах типа TextBlock -->
     <Style x:Key="BigTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontFamily" Value="{StaticResource FontMain}"/>
@@ -32,10 +37,12 @@
         <Setter Property="Margin" Value="4"/>
     </Style>
 
+    <!-- Стиль для среднего текста, основанный на стиле для большого текста -->
     <Style x:Key="MediumTextBlockStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BigTextBlockStyle}">
         <Setter Property="FontSize" Value="16"/>
     </Style>
 
+    <!-- Стиль для большого текста в контролах -->
     <Style x:Key="BigTextStyle" TargetType="{x:Type Control}">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontFamily" Value="{StaticResource FontMain}"/>
@@ -45,12 +52,14 @@
         <Setter Property="Margin" Value="4"/>
     </Style>
 
+    <!-- Стиль для текстовых полей (TextBox) с настройками внешнего вида -->
     <Style x:Key="BigTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BigTextStyle}">
         <Setter Property="BorderBrush" Value="{DynamicResource OrangeBrush}"/>
         <Setter Property="Padding" Value="3"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
+                    <!-- Шаблон для текстового поля с фоном и прокручиваемым содержимым -->
                     <Border x:Name="bg" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"
                         CornerRadius="2" Background="{TemplateBinding Background}">
                         <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
@@ -60,10 +69,12 @@
         </Setter>
     </Style>
 
+    <!-- Стиль для текстовых полей среднего размера, основанный на большом стиле -->
     <Style x:Key="MediumTextBoxStyle" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BigTextBoxStyle}">
         <Setter Property="FontSize" Value="14"/>
     </Style>
 
+    <!-- Стиль для кнопки переключения (ToggleButton) комбинированного списка -->
     <Style x:Key="CustomComboboxToggleButtonStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="IsTabStop" Value="False"/>
@@ -72,6 +83,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <!-- Шаблон для кнопки с фоном и стрелкой -->
                     <Border x:Name="templateRoot" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
                         BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" SnapsToDevicePixels="True"
                         Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
@@ -80,15 +92,18 @@
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
+                        <!-- Триггер для изменения фона при наведении мыши -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Background" TargetName="templateRoot" Value="{StaticResource OrangeLightBrush}" />
                         </MultiDataTrigger>
+                        <!-- Триггер для изменения цвета стрелки при нажатии -->
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Fill" TargetName="Arrow" Value="Black"/>
                         </Trigger>
+                        <!-- Триггер для изменения фона и границы при редактируемости комбинированного списка -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding IsPressed, RelativeSource={RelativeSource Self}}" Value="true"/>
@@ -106,6 +121,7 @@
                             </Setter>
                             <Setter Property="BorderBrush" TargetName="splitBorder" Value="#FF569DE5"/>
                         </MultiDataTrigger>
+                        <!-- Триггер для изменения цвета стрелки, если кнопка отключена -->
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Fill" TargetName="Arrow" Value="#FFBFBFBF"/>
                         </Trigger>

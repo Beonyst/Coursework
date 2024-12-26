@@ -1,15 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!-- Стиль для ListBox без рамки и фона -->
     <Style x:Key="BorderlessListBox" TargetType="ListBox">
+        <!-- Установка толщины рамки в 0, что убирает рамку -->
         <Setter Property="BorderThickness" Value="0"/>
+        <!-- Установка фона ListBox как прозрачного -->
         <Setter Property="Background" Value="Transparent"/>
+        <!-- Настройка стиля для элементов списка (ListBoxItem) -->
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style TargetType="ListBoxItem">
+                    <!-- Настройка шаблона для элементов списка -->
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="ListBoxItem">
+                                <!-- Контент элемента списка будет отображаться без дополнительных рамок -->
                                 <ContentPresenter/>
                             </ControlTemplate>
                         </Setter.Value>

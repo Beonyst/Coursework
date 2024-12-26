@@ -1,26 +1,27 @@
 ###############################################################################
-# Set default behavior to automatically normalize line endings.
+# Установить поведение по умолчанию для автоматической нормализации окончания строк.
 ###############################################################################
 * text=auto
 
 ###############################################################################
-# Set default behavior for command prompt diff.
+# Установить поведение по умолчанию для diff в командной строке.
 #
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-# Note: This is only used by command line
+# Это необходимо для более ранних версий msysgit, которые не включают это
+# по умолчанию для файлов csharp.
+# Примечание: Это используется только в командной строке
 ###############################################################################
 #*.cs     diff=csharp
 
 ###############################################################################
-# Set the merge driver for project and solution files
+# Установить драйвер слияния для файлов проектов и решений.
 #
-# Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
+# Слияние из командной строки добавит маркеры diff в файлы, если возникнут
+# конфликты (слияние из VS не затрагивает настройки ниже, в VS
+# маркеры diff никогда не вставляются). Маркеры diff могут привести к тому,
+# что следующие расширения файлов не будут загружаться в VS. Альтернативой будет
+# трактовать эти файлы как бинарные, и они всегда будут конфликтовать, требуя
+# вмешательства пользователя при каждом слиянии. Для этого просто раскомментируйте
+# нижеуказанные записи
 ###############################################################################
 #*.sln       merge=binary
 #*.csproj    merge=binary
@@ -36,20 +37,20 @@
 #*.wwaproj   merge=binary
 
 ###############################################################################
-# behavior for image files
+# Поведение для файлов изображений
 #
-# image files are treated as binary by default.
+# Изображения по умолчанию обрабатываются как бинарные файлы.
 ###############################################################################
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
 
 ###############################################################################
-# diff behavior for common document formats
+# Поведение diff для общих форматов документов
 # 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
+# Преобразовать бинарные форматы документов в текст перед сравнением. Эта
+# функция доступна только из командной строки. Включите ее, раскомментировав
+# записи ниже.
 ###############################################################################
 #*.doc   diff=astextplain
 #*.DOC   diff=astextplain

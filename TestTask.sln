@@ -1,31 +1,59 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Указывает, что это файл решения (solution) для Microsoft Visual Studio
+# Формат файла версии 12.00
+# Используется Visual Studio версии 17.11
+
 VisualStudioVersion = 17.11.35312.102
+# Текущая версия Visual Studio, которая используется для данного решения
 MinimumVisualStudioVersion = 10.0.40219.1
+# Минимальная версия Visual Studio, необходимая для работы с этим решением
+
+# Определение проекта API
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "TestTask\API.csproj", "{C0E1402F-0194-4BD3-B212-697E934F6AE0}"
+# {9A19103F...} - идентификатор типа проекта (например, C# SDK-style project)
+# "API" - имя проекта
+# "TestTask\API.csproj" - путь к файлу проекта относительно решения
+# {C0E1402F...} - уникальный идентификатор проекта
 EndProject
+
+# Определение проекта WPF
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf", "WPF\Wpf.csproj", "{840885D9-457E-442F-A4DB-27B66F25FA28}"
+# {9A19103F...} - идентификатор типа проекта
+# "Wpf" - имя проекта
+# "WPF\Wpf.csproj" - путь к файлу проекта
+# {840885D9...} - уникальный идентификатор проекта
 EndProject
+
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C0E1402F-0194-4BD3-B212-697E934F6AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0E1402F-0194-4BD3-B212-697E934F6AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0E1402F-0194-4BD3-B212-697E934F6AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0E1402F-0194-4BD3-B212-697E934F6AE0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{840885D9-457E-442F-A4DB-27B66F25FA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{840885D9-457E-442F-A4DB-27B66F25FA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{840885D9-457E-442F-A4DB-27B66F25FA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{840885D9-457E-442F-A4DB-27B66F25FA28}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {847A1D1B-6DBD-4E27-B72B-553C5C53D554}
-	EndGlobalSection
+    GlobalSection(SolutionConfigurationPlatforms) = preSolution
+        # Определения конфигураций для всего решения
+        Debug|Any CPU = Debug|Any CPU
+        # Конфигурация Debug (отладка) для всех процессоров (Any CPU)
+        Release|Any CPU = Release|Any CPU
+        # Конфигурация Release (релиз) для всех процессоров
+    EndGlobalSection
+
+    GlobalSection(ProjectConfigurationPlatforms) = postSolution
+        # Конфигурации для отдельных проектов
+        {C0E1402F-0194-4BD3-B212-697E934F6AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {C0E1402F-0194-4BD3-B212-697E934F6AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {C0E1402F-0194-4BD3-B212-697E934F6AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {C0E1402F-0194-4BD3-B212-697E934F6AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+
+        {840885D9-457E-442F-A4DB-27B66F25FA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {840885D9-457E-442F-A4DB-27B66F25FA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {840885D9-457E-442F-A4DB-27B66F25FA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {840885D9-457E-442F-A4DB-27B66F25FA28}.Release|Any CPU.Build.0 = Release|Any CPU
+        # Конфигурации для проекта WPF
+    EndGlobalSection
+
+    GlobalSection(SolutionProperties) = preSolution
+        HideSolutionNode = FALSE
+        # Опция скрытия узла решения в Visual Studio (FALSE - не скрывать)
+    EndGlobalSection
+
+    GlobalSection(ExtensibilityGlobals) = postSolution
+        SolutionGuid = {847A1D1B-6DBD-4E27-B72B-553C5C53D554}
+        # Уникальный идентификатор для решения
+    EndGlobalSection
 EndGlobal

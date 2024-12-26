@@ -7,15 +7,16 @@ namespace Wpf.ViewModels.MedicinesEditor;
 
 public class MedicineItemViewModel : ViewModelBase
 {
-    private string _name = null!;
-    private string _description = null!;
-    private double _price;
-    private int _rubles;
-    private int _kopecks;
-    private Supplier _supplier = null!;
+    private string _name = null!; // Название медикамента
+    private string _description = null!; // Описание медикамента
+    private double _price; // Цена медикамента (в рублях и копейках)
+    private int _rubles; // Рубли
+    private int _kopecks; // Копейки
+    private Supplier _supplier = null!; // Поставщик медикамента
 
-    public int Id { get; }
+    public int Id { get; } // Уникальный идентификатор медикамента
 
+    // Свойство для имени медикамента
     [Required]
     public string Name
     {
@@ -25,11 +26,12 @@ public class MedicineItemViewModel : ViewModelBase
             if (_name != value)
             {
                 _name = value;
-                RaisePropertyChanged(nameof(Name));
+                RaisePropertyChanged(nameof(Name)); // Уведомление об изменении имени
             }
         }
     }
 
+    // Свойство для описания медикамента
     [Required]
     public string Description
     {
@@ -39,11 +41,12 @@ public class MedicineItemViewModel : ViewModelBase
             if (_description != value)
             {
                 _description = value;
-                RaisePropertyChanged(nameof(Description));
+                RaisePropertyChanged(nameof(Description)); // Уведомление об изменении описания
             }
         }
     }
 
+    // Свойство для рублей
     [Required]
     public int Rubles
     {
@@ -53,12 +56,13 @@ public class MedicineItemViewModel : ViewModelBase
             if (_rubles != value)
             {
                 _rubles = value;
-                RaisePropertyChanged(nameof(Rubles));
-                RaisePropertyChanged(nameof(Price));
+                RaisePropertyChanged(nameof(Rubles)); // Уведомление об изменении рублей
+                RaisePropertyChanged(nameof(Price)); // Уведомление об изменении цены
             }
         }
     }
 
+    // Свойство для копеек
     [Required]
     public int Kopecks
     {
@@ -68,20 +72,21 @@ public class MedicineItemViewModel : ViewModelBase
             if (_kopecks != value)
             {
                 _kopecks = value;
-                RaisePropertyChanged(nameof(Kopecks));
-                RaisePropertyChanged(nameof(Price));
+                RaisePropertyChanged(nameof(Kopecks)); // Уведомление об изменении копеек
+                RaisePropertyChanged(nameof(Price)); // Уведомление об изменении цены
             }
         }
     }
 
+    // Свойство для вычисляемой цены (рубли + копейки)
     [Required]
     public double Price
     { 
-        get => _rubles + Kopecks / 100d;
-        set { }
+        get => _rubles + Kopecks / 100d; // Цена в рублях
+        set { } // Свойство только для чтения
     }
 
-
+    // Свойство для поставщика
     public Supplier Supplier
     {
         get => _supplier;
@@ -90,36 +95,40 @@ public class MedicineItemViewModel : ViewModelBase
             if (_supplier != value)
             {
                 _supplier = value;
-                RaisePropertyChanged(nameof(Supplier));
+                RaisePropertyChanged(nameof(Supplier)); // Уведомление об изменении поставщика
             }
         }
     }
 
+    // Конструктор по умолчанию
     public MedicineItemViewModel()
     {
 
     }
 
+    // Конструктор с использованием объекта Medicine
     public MedicineItemViewModel(Medicine medicine)
     {
         Id = medicine.Id;
         Name = medicine.Name;
         Description = medicine.Description;
-        Rubles = (int)Math.Floor(medicine.Price);
-        Kopecks = (int)(medicine.Price * 100 % 100);
+        Rubles = (int)Math.Floor(medicine.Price); // Извлекаем рубли из цены
+        Kopecks = (int)(medicine.Price * 100 % 100); // Извлекаем копейки из цены
         Supplier = medicine.Supplier;
     }
 
+    // Конструктор с использованием другого объекта MedicineItemViewModel
     public MedicineItemViewModel(MedicineItemViewModel medicineItemViewModel)
     {
         Id = medicineItemViewModel.Id;
         Name = medicineItemViewModel.Name;
         Description = medicineItemViewModel.Description;
-        Rubles = (int)Math.Floor(medicineItemViewModel.Price);
-        Kopecks = (int)(medicineItemViewModel.Price * 100 % 100);
+        Rubles = (int)Math.Floor(medicineItemViewModel.Price); // Извлекаем рубли из цены
+        Kopecks = (int)(medicineItemViewModel.Price * 100 % 100); // Извлекаем копейки из цены
         Supplier = medicineItemViewModel.Supplier;
     }
 
+    // Метод для валидации данных
     public ICollection<ValidationResult>? Validate()
     {
         var context = new ValidationContext(this);
@@ -127,9 +136,9 @@ public class MedicineItemViewModel : ViewModelBase
 
         if (Validator.TryValidateObject(this, context, results, true) is false)
         {
-            return results;
+            return results; // Возвращаем список ошибок валидации
         }
 
-        return null;
+        return null; // Если ошибок нет, возвращаем null
     }
 }

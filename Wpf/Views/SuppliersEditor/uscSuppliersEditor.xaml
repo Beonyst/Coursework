@@ -8,17 +8,23 @@
              xmlns:views="clr-namespace:Wpf.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <!-- Ресурсы, такие как стили и конвертеры -->
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!-- Подключение стилей для общих элементов, кнопок и DataGrid -->
                 <ResourceDictionary Source="../../Styles/Common.xaml"/>
                 <ResourceDictionary Source="../../Styles/Button.xaml"/>
                 <ResourceDictionary Source="../../Styles/DataGrid.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <!-- Конвертер для преобразования булевого значения в видимость -->
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
+
+    <!-- Основная сетка для размещения элементов -->
     <Grid>
+        <!-- Определение строк и столбцов для сетки -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -28,6 +34,7 @@
             <ColumnDefinition Width="600"/>
         </Grid.ColumnDefinitions>
 
+        <!-- Панель с кнопками для добавления, изменения, удаления и обновления данных -->
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -37,30 +44,35 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
+            <!-- Кнопки с привязками к командам -->
             <Button Grid.Column="0" Style="{StaticResource CustomFlatButton}" Content="Добавить" Width="150" Margin="2, 4" Command="{Binding ShowAddItemPanelCmd}"/>
             <Button Grid.Column="1" Style="{StaticResource CustomFlatButton}" Content="Изменить" Width="150" Margin="2, 4" Command="{Binding ShowEditItemPanelCmd}"/>
             <Button Grid.Column="2" Style="{StaticResource CustomFlatButton}" Content="Удалить" Width="150" Margin="2, 4" Command="{Binding ShowDeleteItemPanelCmd}"/>
             <Button Grid.Column="3" Style="{StaticResource CustomFlatButton}" Content="Обновить" Width="150" Margin="2, 4" Command="{Binding RefreshDataCmd}"/>
-
         </Grid>
 
+        <!-- Панель для редактирования, привязана к видимости и контексту данных -->
         <views:uscEditorPanel Grid.Row="1" Grid.Column="1"
                               Visibility="{Binding DataContext.IsEditorPanelVisible, Converter={StaticResource boolToVisibilityConverter},
             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:uscSuppliersEditor}}"
                               DataContext="{Binding EditorPanelViewModel}"/>
 
+        <!-- Панель для удаления, привязана к видимости и контексту данных -->
         <views:uscDeletePanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                  Visibility="{Binding DataContext.IsDeletePanelVisible, Converter={StaticResource boolToVisibilityConverter},
+                              Visibility="{Binding DataContext.IsDeletePanelVisible, Converter={StaticResource boolToVisibilityConverter},
             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:uscSuppliersEditor}}"
-                  DataContext="{Binding DeleteSupplierViewModel}" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="2"/>
+                              DataContext="{Binding DeleteSupplierViewModel}" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="2"/>
 
+        <!-- DataGrid для отображения данных поставщиков -->
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding SupplierItems}"
                   SelectedItem="{Binding SelectedSupplierItem}" AutoGenerateColumns="False"
                   CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True">
             <DataGrid.Style>
+                <!-- Стили для DataGrid с условиями отключения на основе видимости панелей -->
                 <Style TargetType="DataGrid" BasedOn="{StaticResource CustomDataGrid}">
                     <Setter Property="IsEnabled" Value="True"/>
                     <Style.Triggers>
+                        <!-- Деактивация DataGrid при отображении панели удаления или редактирования -->
                         <DataTrigger Binding="{Binding IsDeletePanelVisible}" Value="True">
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
@@ -70,6 +82,7 @@
                     </Style.Triggers>
                 </Style>
             </DataGrid.Style>
+            <!-- Определение колонок для DataGrid -->
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Width="*" Header="Наименование"/>
             </DataGrid.Columns>

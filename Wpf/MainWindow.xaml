@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="450" Width="800" WindowState="Maximized">
+        Title="{Binding WindowTitle}" 
+        Height="450" 
+        Width="800" 
+        WindowState="Maximized">
+    <!-- Основной контейнер окна -->
     <Grid>
+        <!-- Отображает текущую ViewModel в окне с помощью привязки данных -->
         <ContentPresenter Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

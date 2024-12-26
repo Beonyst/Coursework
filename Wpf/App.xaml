@@ -6,29 +6,39 @@
              xmlns:viewsSuppliers="clr-namespace:Wpf.Views.SuppliersEditor"
              xmlns:vmMedicines="clr-namespace:Wpf.ViewModels.MedicinesEditor"
              xmlns:viewsMedicines="clr-namespace:Wpf.Views.MedicinesEditor"
-             xmlns:views="clr-namespace:Wpf.Views"
-             >
+             xmlns:views="clr-namespace:Wpf.Views">
     <Application.Resources>
+        <!-- Привязка MainViewModel к представлению -->
         <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
             <views:uscMain/>
         </DataTemplate>
-        
+
+        <!-- Привязка AddSupplierViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmSuppliers:AddSupplierViewModel}">
             <viewsSuppliers:uscAddSupplier/>
         </DataTemplate>
+
+        <!-- Привязка EditSupplierViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmSuppliers:EditSupplierViewModel}">
             <viewsSuppliers:uscEditSupplier/>
         </DataTemplate>
+
+        <!-- Привязка SuppliersEditorViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmSuppliers:SuppliersEditorViewModel}">
             <viewsSuppliers:uscSuppliersEditor/>
         </DataTemplate>
 
+        <!-- Привязка AddMedicineViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmMedicines:AddMedicineViewModel}">
             <viewsMedicines:uscAddMedicine/>
         </DataTemplate>
+
+        <!-- Привязка EditMedicineViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmMedicines:EditMedicineViewModel}">
             <viewsMedicines:uscEditMedicine/>
         </DataTemplate>
+
+        <!-- Привязка MedicinesEditorViewModel к представлению -->
         <DataTemplate DataType="{x:Type vmMedicines:MedicinesEditorViewModel}">
             <viewsMedicines:uscMedicinesEditor/>
         </DataTemplate>

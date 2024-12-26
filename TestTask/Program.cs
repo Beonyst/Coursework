@@ -5,25 +5,28 @@ using Autofac.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Добавление контроллеров для обработки HTTP запросов.
 builder.Services.AddControllers();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Добавление сервисов для работы с API (для документации Swagger).
+builder.Services.AddEndpointsApiExplorer();  // Для автоматического документирования API.
+builder.Services.AddSwaggerGen();  // Генерация Swagger UI.
 
 var startup = new Startup(builder.Environment, builder.Configuration);
-startup.ConfigureServices(builder.Services);
+startup.ConfigureServices(builder.Services);  // Настройка сервисов через метод Startup.ConfigureServices.
 
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-builder.Host.ConfigureContainer<ContainerBuilder>(startup.ConfigureContainer);
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());  // Настройка контейнера зависимостей через Autofac.
+builder.Host.ConfigureContainer<ContainerBuilder>(startup.ConfigureContainer);  // Конфигурация контейнера с помощью модулей.
 
 var app = builder.Build();
-startup.Configure(app, app.Environment);
+startup.Configure(app, app.Environment);  // Настройка middleware через метод Startup.Configure.
 
-// Configure the HTTP request pipeline.
+// Настройка конвейера обработки HTTP запросов.
+// Условие для включения Swagger UI в режиме разработки.
 /*if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger();  // Включение Swagger для документации.
+    app.UseSwaggerUI();  // Включение UI для Swagger.
 }*/
 
-app.Run();
+app.Run();  // Запуск приложения.

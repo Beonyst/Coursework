@@ -20,6 +20,7 @@ namespace Wpf.Views.SuppliersEditor
     /// </summary>
     public partial class uscSuppliersEditor : UserControl
     {
+        // Конструктор, инициализирует компоненты, связанные с данным элементом управления
         public uscSuppliersEditor()
         {
             InitializeComponent();

@@ -8,15 +8,16 @@ namespace Wpf.ViewModels.MedicinesEditor;
 
 public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
 {
-    private readonly IMedicineService _medicineService;
-    private readonly ISupplierService _supplierService;
-    private readonly AddMedicineViewModel _addMedicineViewModel;
-    private readonly EditMedicineViewModel _editMedicineViewModel;
-    private ObservableCollection<MedicineItemViewModel> _medicineItems = null!;
-    private MedicineItemViewModel? _selectedMedicineItem;
-    private EditorPanelViewModelBase<Medicine> _editorPanelViewModel;
-    private bool _isDeletePanelVisible;
+    private readonly IMedicineService _medicineService; // Сервис для работы с медикаментами
+    private readonly ISupplierService _supplierService; // Сервис для работы с поставщиками
+    private readonly AddMedicineViewModel _addMedicineViewModel; // Модель для добавления медикамента
+    private readonly EditMedicineViewModel _editMedicineViewModel; // Модель для редактирования медикамента
+    private ObservableCollection<MedicineItemViewModel> _medicineItems = null!; // Список медикаментов
+    private MedicineItemViewModel? _selectedMedicineItem; // Выбранный медикамент
+    private EditorPanelViewModelBase<Medicine> _editorPanelViewModel; // Панель редактирования медикамента
+    private bool _isDeletePanelVisible; // Видимость панели удаления
 
+    // Свойство для отображения списка медикаментов
     public ObservableCollection<MedicineItemViewModel> MedicineItems
     {
         get => _medicineItems;
@@ -25,11 +26,12 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
             if (_medicineItems != value)
             {
                 _medicineItems = value;
-                RaisePropertyChanged(nameof(MedicineItems));
+                RaisePropertyChanged(nameof(MedicineItems)); // Уведомление об изменении списка медикаментов
             }
         }
     }
 
+    // Свойство для выбора медикамента
     public MedicineItemViewModel? SelectedMedicineItem
     {
         get => _selectedMedicineItem;
@@ -38,13 +40,14 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
             if (_selectedMedicineItem != value)
             {
                 _selectedMedicineItem = value;
-                RaisePropertyChanged(nameof(SelectedMedicineItem));
-                RaiseCommandCanExecuteChanged(ShowEditItemPanelCmd);
-                RaiseCommandCanExecuteChanged(ShowDeleteItemPanelCmd);
+                RaisePropertyChanged(nameof(SelectedMedicineItem)); // Уведомление об изменении выбранного медикамента
+                RaiseCommandCanExecuteChanged(ShowEditItemPanelCmd); // Обновление состояния команды редактирования
+                RaiseCommandCanExecuteChanged(ShowDeleteItemPanelCmd); // Обновление состояния команды удаления
             }
         }
     }
 
+    // Свойство для отображения панели редактирования
     public EditorPanelViewModelBase<Medicine> EditorPanelViewModel
     {
         get => _editorPanelViewModel;
@@ -53,13 +56,15 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
             if (_editorPanelViewModel != value)
             {
                 _editorPanelViewModel = value;
-                RaisePropertyChanged(nameof(EditorPanelViewModel));
+                RaisePropertyChanged(nameof(EditorPanelViewModel)); // Уведомление об изменении панели редактирования
             }
         }
     }
 
+    // Модель для удаления медикамента
     public DeleteMedicineViewModel DeleteMedicineViewModel { get; set; }
 
+    // Свойство для управления видимостью панели удаления
     public bool IsDeletePanelVisible
     {
         get => _isDeletePanelVisible;
@@ -68,17 +73,19 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
             if (_isDeletePanelVisible != value)
             {
                 _isDeletePanelVisible = value;
-                RaisePropertyChanged(nameof(IsDeletePanelVisible));
+                RaisePropertyChanged(nameof(IsDeletePanelVisible)); // Уведомление об изменении видимости панели удаления
             }
         }
     }
 
+    // Конструктор с инъекцией зависимостей
     public MedicinesEditorViewModel(IMedicineService medicineService, ISupplierService supplierService, DeleteMedicineViewModel deleteMedicineViewModel,
         AddMedicineViewModel addMedicineViewModel, EditMedicineViewModel editMedicineViewModel) : base("Медикаменты")
     {
         _medicineService = medicineService;
         _supplierService = supplierService;
 
+        // Инициализация моделей для добавления и редактирования медикаментов
         _addMedicineViewModel = addMedicineViewModel;
         _addMedicineViewModel.ParentViewModel = this;
         _addMedicineViewModel.EditorPanelClosed += AddMedicineViewModelOnEditorPanelClosed;
@@ -86,66 +93,77 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
         _editMedicineViewModel = editMedicineViewModel;
         _editMedicineViewModel.EditorPanelClosed += EditMedicineViewModelOnEditorPanelClosed;
 
+        // Инициализация модели для удаления медикаментов
         DeleteMedicineViewModel = deleteMedicineViewModel;
         DeleteMedicineViewModel.EditorPanelClosed += DeleteMedicineViewModelOnEditorPanelClosed;
     }
 
+    // Метод для обновления списка медикаментов
     public override async void Update()
     {
         var medicines = await _medicineService.GetAllAsync();
         MedicineItems = new ObservableCollection<MedicineItemViewModel>(medicines.Select(medicine => new MedicineItemViewModel(medicine)));
     }
 
+    // Метод для обновления данных
     protected override void RefreshData(object? obj)
     {
         Update();
     }
 
+    // Метод для отображения панели добавления медикамента
     protected override void ShowAddItemPanel(object? obj)
     {
         _addMedicineViewModel.Init();
         EditorPanelViewModel = _addMedicineViewModel;
-        base.ShowAddItemPanel(obj);
+        base.ShowAddItemPanel(obj); // Вызов базового метода для отображения панели добавления
     }
 
+    // Метод для отображения панели удаления медикамента
     protected override void ShowDeleteItemPanel(object? obj)
     {
         DeleteMedicineViewModel.Init(SelectedMedicineItem);
         IsDeletePanelVisible = true;
     }
 
+    // Условие для выполнения команды удаления
     protected override bool CanExecuteShowDeleteItemPanelCmd(object? obj)
     {
-        return SelectedMedicineItem is not null;
+        return SelectedMedicineItem is not null; // Команда доступна, если выбран медикамент
     }
 
+    // Метод для отображения панели редактирования медикамента
     protected override void ShowEditItemPanel(object? obj)
     {
         _editMedicineViewModel.Init(SelectedMedicineItem!);
         EditorPanelViewModel = _editMedicineViewModel;
-        base.ShowEditItemPanel(obj);
+        base.ShowEditItemPanel(obj); // Вызов базового метода для отображения панели редактирования
     }
 
+    // Условие для выполнения команды редактирования
     protected override bool CanExecuteShowEditItemPanelCmd(object? obj)
     {
-        return SelectedMedicineItem is not null;
+        return SelectedMedicineItem is not null; // Команда доступна, если выбран медикамент
     }
 
+    // Условие для выполнения команд редактирования и удаления
     protected override bool CanExecuteEditorCommands(object? obj)
     {
-        return IsEditorPanelVisible is false && IsDeletePanelVisible is false;
+        return IsEditorPanelVisible is false && IsDeletePanelVisible is false; // Команды доступны, если не отображаются панели редактирования или удаления
     }
 
+    // Обработчик закрытия панели добавления медикамента
     private void AddMedicineViewModelOnEditorPanelClosed(object? sender, EditorPanelClosedEventArgs<Medicine> editorPanelClosedEventArgs)
     {
         if (editorPanelClosedEventArgs.ResultType == EditorPanelResult.Success)
         {
-            MedicineItems.Add(new MedicineItemViewModel(editorPanelClosedEventArgs.EditedModel));
+            MedicineItems.Add(new MedicineItemViewModel(editorPanelClosedEventArgs.EditedModel)); // Добавляем новый медикамент в список
         }
 
-        IsEditorPanelVisible = false;
+        IsEditorPanelVisible = false; // Скрываем панель редактирования
     }
 
+    // Обработчик закрытия панели редактирования медикамента
     private void EditMedicineViewModelOnEditorPanelClosed(object? sender, EditorPanelClosedEventArgs<Medicine> editorPanelClosedEventArgs)
     {
         if (editorPanelClosedEventArgs.ResultType == EditorPanelResult.Success)
@@ -155,20 +173,21 @@ public class MedicinesEditorViewModel : DataBaseEditorViewModelBase
             {
                 var index = MedicineItems.IndexOf(medicineToReplace);
                 MedicineItems.RemoveAt(index);
-                MedicineItems.Insert(index, new MedicineItemViewModel(editorPanelClosedEventArgs.EditedModel));
+                MedicineItems.Insert(index, new MedicineItemViewModel(editorPanelClosedEventArgs.EditedModel)); // Обновляем медикамент в списке
             }
         }
 
-        IsEditorPanelVisible = false;
+        IsEditorPanelVisible = false; // Скрываем панель редактирования
     }
 
+    // Обработчик закрытия панели удаления медикамента
     private void DeleteMedicineViewModelOnEditorPanelClosed(object? sender, EditorPanelClosedEventArgs<Medicine> editorPanelClosedEventArgs)
     {
         if (editorPanelClosedEventArgs.ResultType == EditorPanelResult.Success)
         {
-            MedicineItems.Remove(DeleteMedicineViewModel.DeletedMedicineItem);
+            MedicineItems.Remove(DeleteMedicineViewModel.DeletedMedicineItem); // Удаляем медикамент из списка
         }
 
-        IsDeletePanelVisible = false;
+        IsDeletePanelVisible = false; // Скрываем панель удаления
     }
 }
