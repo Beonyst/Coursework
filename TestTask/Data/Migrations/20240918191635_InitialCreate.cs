@@ -10,44 +10,44 @@ namespace Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // Creating the "Suppliers" table with columns: Id (auto-incremented) and Name
+            // Создание таблицы "Suppliers" с колонками: Id (автоинкремент) и Name
             migrationBuilder.CreateTable(
                 name: "Suppliers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true), // Auto-incremented column
-                    Name = table.Column<string>(type: "TEXT", nullable: false) // Non-nullable Name column
+                        .Annotation("Sqlite:Autoincrement", true), // Автоинкрементируемая колонка
+                    Name = table.Column<string>(type: "TEXT", nullable: false) // Колонка Name с ненулевым значением
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Suppliers", x => x.Id); // Primary key set on the Id column
+                    table.PrimaryKey("PK_Suppliers", x => x.Id); // Первичный ключ по колонке Id
                 });
 
-            // Creating the "Medicines" table with columns: Id (auto-incremented), Name, Description, Price, and SupplierId (foreign key)
+            // Создание таблицы "Medicines" с колонками: Id (автоинкремент), Name, Description, Price и SupplierId (внешний ключ)
             migrationBuilder.CreateTable(
                 name: "Medicines",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true), // Auto-incremented column
-                    Name = table.Column<string>(type: "TEXT", nullable: false), // Non-nullable Name column
-                    Description = table.Column<string>(type: "TEXT", nullable: false), // Non-nullable Description column
-                    Price = table.Column<decimal>(type: "TEXT", nullable: false), // Non-nullable Price column
-                    SupplierId = table.Column<int>(type: "INTEGER", nullable: false) // Foreign key to the Supplier table
+                        .Annotation("Sqlite:Autoincrement", true), // Автоинкрементируемая колонка
+                    Name = table.Column<string>(type: "TEXT", nullable: false), // Колонка Name с ненулевым значением
+                    Description = table.Column<string>(type: "TEXT", nullable: false), // Колонка Description с ненулевым значением
+                    Price = table.Column<decimal>(type: "TEXT", nullable: false), // Колонка Price с ненулевым значением
+                    SupplierId = table.Column<int>(type: "INTEGER", nullable: false) // Внешний ключ к таблице Supplier
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medicines", x => x.Id); // Primary key set on the Id column
+                    table.PrimaryKey("PK_Medicines", x => x.Id); // Первичный ключ по колонке Id
                     table.ForeignKey(
-                        name: "FK_Medicines_Suppliers_SupplierId", // Defining foreign key relationship with the Suppliers table
+                        name: "FK_Medicines_Suppliers_SupplierId", // Определение внешнего ключа для связи с таблицей Suppliers
                         column: x => x.SupplierId,
-                        principalTable: "Suppliers", // Referencing the Suppliers table
-                        principalColumn: "Id", // The SupplierId column references the Id column of Suppliers
-                        onDelete: ReferentialAction.Cascade); // Cascade delete: if a supplier is deleted, related medicines are deleted
+                        principalTable: "Suppliers", // Ссылка на таблицу Suppliers
+                        principalColumn: "Id", // Колонка SupplierId ссылается на Id в таблице Suppliers
+                        onDelete: ReferentialAction.Cascade); // Каскадное удаление: при удалении поставщика связанные записи лекарств также удаляются
                 });
 
-            // Creating an index on SupplierId in the Medicines table for faster lookup
+            // Создание индекса на колонке SupplierId в таблице Medicines для ускорения поиска
             migrationBuilder.CreateIndex(
                 name: "IX_Medicines_SupplierId",
                 table: "Medicines",
@@ -57,11 +57,11 @@ namespace Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            // Dropping the "Medicines" table
+            // Удаление таблицы "Medicines"
             migrationBuilder.DropTable(
                 name: "Medicines");
 
-            // Dropping the "Suppliers" table
+            // Удаление таблицы "Suppliers"
             migrationBuilder.DropTable(
                 name: "Suppliers");
         }
