@@ -1,0 +1,12 @@
+global using Wpf.Models;
+global using Wpf.Services;
+global using System;
+global using System.Net;
+global using System.Net.Http;
+global using System.Text;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using Moq;
+global using Moq.Protected;
+global using Newtonsoft.Json;
+global using Xunit;
